@@ -2,59 +2,15 @@
 <html>
   <head>
     <title>Jupyter Sidecar</title>
-    <link rel="import" href="templates/sidecar-header.html">
-    <link rel="import" href="templates/sidecar-contents.html">
-    <link rel="import" href="templates/sidecar-status.html">
+    <script>
+        var Sidecar = require('./lib/sidecar')
+        var ipc = require('electron').ipcRenderer;
+        var container = document.getElementById('container');
+        var sidecar = new Sidecar();
+        ipc.on('message', sidecar.consume.bind(sidecar));
+    </script>
   </head>
-  <body>
-
-    <style>
-    body /deep/ sidecar-status {
-      font-family: 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
-    }
-
-    body {
-      /* Prevent Chrome "bounce" */
-      overflow: hidden;
-    }
-
-    sidecar-header {
-      display: block;
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      box-sizing: border-box;
-      -webkit-app-region: drag;
-      -webkit-user-select: none;
-
-      box-shadow: 0px 2px 1px #e7e7e7;
-    }
-
-    sidecar-contents {
-      top: 25px;
-      left: 0;
-      right: 0;
-      bottom: 25px;
-      position: fixed;
-      overflow: auto;
-      height: inherit;
-    }
-
-    sidecar-status {
-      bottom: 0px;
-      height: 28px;
-      left: 0;
-      width:100%;
-      position: fixed;
-      box-shadow: 0px -2px 1px #e7e7e7;
-      -webkit-user-select: none;
-    }
-    </style>
-
-    <sidecar-header></sidecar-header>
-    <sidecar-contents></sidecar-contents>
-    <sidecar-status></sidecar-status>
-
+  <body>    
+    <div id="root"></div>
   </body>
 </html>

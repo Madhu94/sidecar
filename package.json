@@ -24,17 +24,21 @@
   "homepage": "https://github.com/rgbkrk/jupyter-sidecar",
   "electronVersion": "0.33.0",
   "dependencies": {
+    "@nteract/display-area": "^4.0.0",
     "electron-prebuilt": "1.4.13",
+    "immutable": "^4.0.0-rc.9",
     "jmp": "0.7.5",
     "jupyter-js-output-area": "0.3.3",
     "jupyter-paths": "^1.1.0",
+    "lodash": "^4.17.5",
     "node-gyp": "^3.5.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "watch": "^1.0.1",
-    "zmq": "^2.12.0"
+    "zeromq": "4.6.0"
   },
   "scripts": {
     "start": "electron app.js",
-    "postinstall": "npm run build:zmq",
     "build:zmq": "HOME=~/.electron-gyp cd node_modules/zmq && node-gyp rebuild --target=0.33.0 --arch=x64 --dist-url=https://atom.io/download/atom-shell",
     "build:linux": "docker build -t rgbkrk/sidecar .",
     "build:copy-linux-artifacts": "docker cp `docker run -d rgbkrk/sidecar echo ''`:/srv/sidecar/SideCar-linux-x64.tgz build && cp SideCar.app build/",

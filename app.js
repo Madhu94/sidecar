@@ -1,18 +1,18 @@
 #!/usr/bin/env electron
 "use strict";
 
-var app = require('app');  // Electron app
-var BrowserWindow = require('browser-window');  // Creating Browser Windows
+var electron = require('electron');
 
-var globalShortcut = require('global-shortcut');
-
+var app = electron.app;
+var BrowserWindow = electron.BrowserWindow;
+var globalShortcut = electron.globalShortcut;
 var jupyter = require("./lib/jupyter.js");
 var RuntimeWatch = require("./lib/runtime-watch.js");
 
 var jp = require('jupyter-paths');
 
 // Report crashes to our server.
-require('crash-reporter').start();
+//require('crash-reporter').start();
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -33,9 +33,8 @@ function launchSideCar(session) {
     //"node-integration": false, // Would have to use a web-view and work with events
     frame: false
   });
-
   // and load the index.html of the app.
-  sideCar.loadUrl('file://' + __dirname + '/index.html');
+  sideCar.loadURL('file://' + __dirname + '/index.html');
 
   sideCar.webContents.on('did-finish-load', function () {
     session.on(function (message) {
@@ -130,7 +129,8 @@ function handleDeadKernel(connPath) {
   }
 }
 
-var kw = new RuntimeWatch(updateKernel, jp.paths.runtime[0]);
+//var kw = new RuntimeWatch(updateKernel, jp.paths.runtime[0]);
+var kw = new RuntimeWatch(updateKernel, jp.runtimeDir());
 
 // This method will be called when Electron has done every
 // initialization and is ready for creating browser windows.
