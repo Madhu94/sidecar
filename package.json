@@ -22,13 +22,12 @@
     "url": "https://github.com/rgbkrk/jupyter-sidecar/issues"
   },
   "homepage": "https://github.com/rgbkrk/jupyter-sidecar",
-  "electronVersion": "0.33.0",
+  "electronVersion": "1.8.2",
   "dependencies": {
     "@nteract/display-area": "^4.0.0",
     "electron-prebuilt": "1.4.13",
     "immutable": "^4.0.0-rc.9",
-    "jmp": "0.7.5",
-    "jupyter-js-output-area": "0.3.3",
+    "jmp": "1.0.0",
     "jupyter-paths": "^1.1.0",
     "lodash": "^4.17.5",
     "node-gyp": "^3.5.0",
